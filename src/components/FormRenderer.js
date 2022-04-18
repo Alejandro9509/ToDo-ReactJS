@@ -13,23 +13,27 @@ class FormRenderer extends React.Component {
       }
       this.updateSubmit = this.updateSubmit.bind(this)
       this.handleTitleChange = this.handleTitleChange.bind(this)
+      this.handleDescChange = this.handleDescChange.bind(this)
     }
     handleTitleChange(e) {
       this.setState({
         title: e.target.value
       })
     }
+    handleDescChange(e) {
+      this.setState({
+        description: e.target.value
+      })
+    }
     updateSubmit(event){
       event.preventDefault()
-      this.props.reducers.addToDo(this.state.title)
+      this.props.reducers.addToDo({title: this.state.title, desc: this.state.description})
       
     }
     render () {
       return (
         <Container>
-            <Row>
-              <ToDoListRenderer list={this.props.reducers.toDo} />
-            </Row>
+            <ToDoListRenderer list={this.props.reducers.toDo} />
             <Row>
               <Col>
                 <div>
@@ -40,7 +44,7 @@ class FormRenderer extends React.Component {
                     </Form.Group>
                     <Form.Group controlId="description">
                       <Form.Label>Descripcion</Form.Label>
-                      <Form.Control as="textarea" rows="3" name="address" autoComplete='0' placeholder='Descripcion de la tarea' />
+                      <Form.Control onChange={this.handleDescChange} as="textarea" rows="3" name="address" autoComplete='0' placeholder='Descripcion de la tarea' />
                     </Form.Group>
                     <Form.Group> 
                        <Button type="submit">Añadir</Button>
