@@ -1,22 +1,32 @@
-import logo from './logo.svg';
 
-import {Container, Row, Col, Button} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
 import './css/App.scss';
 import FormRenderer from './components/FormRenderer'
 import React from 'react';
+import {connect, Provider} from 'react-redux'
+import {mapStateToProps, mapDispatchToProps, store} from './storage/toDo'
 
-class App extends React.Component {
+class AppRender extends React.Component {
   constructor(props) {
-    super(props)
+    super (props)
+
   }
   render(){
     return (
-      <>
-        <FormRenderer  />
-      </>
-    );
+      <FormRenderer  reducers={this.props} />
+    )
   }
 }
 
+class App extends React.Component {
+  
+  render(){
+    return (
+      <Provider store={store}>
+        <Container /> 
+      </Provider>
+    );
+  }
+}
+const Container = connect(mapStateToProps, mapDispatchToProps)(AppRender)
 export default App;
