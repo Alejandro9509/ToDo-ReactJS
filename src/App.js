@@ -1,32 +1,33 @@
-
-import 'bootstrap/dist/css/bootstrap.css'
-import './css/App.scss';
-import FormRenderer from './components/FormRenderer'
-import React from 'react';
-import {connect, Provider} from 'react-redux'
-import {mapStateToProps, mapDispatchToProps, store} from './storage/toDo'
+import "bootstrap/dist/css/bootstrap.css";
+import "./css/App.scss";
+import FormRenderer from "./components/FormRenderer";
+import { ToDoListRenderer } from "./components/ToDoListRenderer";
+import React from "react";
+import { connect, Provider } from "react-redux";
+import { mapStateToProps, mapDispatchToProps, store } from "./storage/toDo";
 
 class AppRender extends React.Component {
   constructor(props) {
-    super (props)
-
+    super(props);
   }
-  render(){
+  render() {
     return (
-      <FormRenderer  reducers={this.props} />
-    )
+      <>
+        <ToDoListRenderer todo={this.props} />
+        <FormRenderer reducers={this.props} />
+      </>
+    );
   }
 }
 
 class App extends React.Component {
-  
-  render(){
+  render() {
     return (
       <Provider store={store}>
-        <Container /> 
+        <Container />
       </Provider>
     );
   }
 }
-const Container = connect(mapStateToProps, mapDispatchToProps)(AppRender)
+const Container = connect(mapStateToProps, mapDispatchToProps)(AppRender);
 export default App;
