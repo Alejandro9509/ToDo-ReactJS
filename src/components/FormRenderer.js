@@ -33,7 +33,7 @@ class FormRenderer extends React.Component {
     render () {
       return (
         <Container>
-            <ToDoListRenderer list={this.props.reducers.toDo} />
+            <ToDoListRenderer todo={this.props.reducers} />
             <Row>
               <Col>
                 <div>
@@ -42,7 +42,7 @@ class FormRenderer extends React.Component {
                       <Form.Label>Titulo de la tarea</Form.Label>
                       <Form.Control onChange={this.handleTitleChange} type="text" placeholder="Titulo...." />
                     </Form.Group>
-                    <Form.Group controlId="description">
+                    <Form.Group className="mb-3" controlId="description">
                       <Form.Label>Descripcion</Form.Label>
                       <Form.Control onChange={this.handleDescChange} as="textarea" rows="3" name="address" autoComplete='0' placeholder='Descripcion de la tarea' />
                     </Form.Group>
