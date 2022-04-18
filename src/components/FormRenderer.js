@@ -1,6 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import {Form , Button, Container , Col, Row} from 'react-bootstrap'
+import {ToDoListRenderer} from './ToDoListRenderer'
 
 
 class FormRenderer extends React.Component {
@@ -27,11 +28,7 @@ class FormRenderer extends React.Component {
       return (
         <Container>
             <Row>
-              <div>
-                {
-                  this.props.reducers.toDo.map((i) => i )
-                }
-              </div>
+              <ToDoListRenderer list={this.props.reducers.toDo} />
             </Row>
             <Row>
               <Col>
