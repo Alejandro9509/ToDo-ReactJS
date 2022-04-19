@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Form, Button, Container, Col, Row } from "react-bootstrap";
+import Moment from 'moment'
 
 class FormRenderer extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class FormRenderer extends React.Component {
     this.state = {
       title: "",
       description: "",
+      date: ""
     };
     this.updateSubmit = this.updateSubmit.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -28,6 +30,7 @@ class FormRenderer extends React.Component {
     this.props.reducers.addToDo({
       title: this.state.title,
       desc: this.state.description,
+      date: Moment().format('DD-MM')
     });
   }
   render() {
