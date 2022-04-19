@@ -1,7 +1,7 @@
-import React from "react";
+import React, { createRef } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Form, Button, Container, Col, Row } from "react-bootstrap";
-import Moment from 'moment'
+import Moment from "moment";
 
 class FormRenderer extends React.Component {
   constructor(props) {
@@ -9,11 +9,12 @@ class FormRenderer extends React.Component {
     this.state = {
       title: "",
       description: "",
-      date: ""
+      date: "",
     };
     this.updateSubmit = this.updateSubmit.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleDescChange = this.handleDescChange.bind(this);
+    this.d = React.createRef()
   }
   handleTitleChange(e) {
     this.setState({
@@ -27,10 +28,11 @@ class FormRenderer extends React.Component {
   }
   updateSubmit(event) {
     event.preventDefault();
+   
     this.props.reducers.addToDo({
       title: this.state.title,
       desc: this.state.description,
-      date: Moment().format('DD-MM')
+      date: this.d.current.value,
     });
   }
   render() {
@@ -61,6 +63,13 @@ class FormRenderer extends React.Component {
                 </Form.Group>
                 <Form.Group>
                   <Button type="submit">Añadir</Button>
+                  <Form.Control
+                    ref={this.d}
+                    type="date"
+                    name="dob"
+                    placeholder="Date of Birth"
+                    defaultValue={Moment().format('YYYY-MM-DD')}
+                  />
                 </Form.Group>
               </Form>
             </div>

@@ -43,9 +43,9 @@ export class ToDoListRenderer extends React.Component {
   render() {
     return (
       <Container>
-				<ToDoListDate  pr={this.props.todo} msg="De otras fechas" dt={Moment().subtract(1, 'days').format('DD-MM') } />
-				<ToDoListDate  pr={this.props.todo} msg="Pendientes de ayer" dt={Moment().subtract(1, 'days').format('DD-MM') }/>
-        <ToDoListDate  pr={this.props.todo} msg="Pendientes para hoy" dt={ Moment().format('DD-MM')}/>
+				<ToDoListDate  pr={this.props.todo} msg="De otras fechas" dt={Moment().subtract(1, 'days').format('YYYY-MM-DD') } />
+				<ToDoListDate  pr={this.props.todo} msg="Pendientes de ayer" dt={Moment().subtract(1, 'days').format('YYYY-MM-DD') }/>
+        <ToDoListDate  pr={this.props.todo} msg="Pendientes para hoy" dt={ Moment().format('YYYY-MM-DD')}/>
 				{
 					this.props.todo.toDo.length === 0 && 
 					<h1>No hay pendientes</h1>
